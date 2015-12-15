@@ -9,21 +9,11 @@ using MVC_Playground.ViewModels;
 
 namespace MVC_Playground.Controllers
 {
-    public class TestController : Controller
+    public class EmployeeController : Controller
     {
         // GET: Test
+       
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public List<Employee> GetEmployees()
-        {
-            UsersDAL salesDal = new UsersDAL();
-            return salesDal.Employees.ToList();
-        }
-
-        public ActionResult GetView()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
 
@@ -48,8 +38,35 @@ namespace MVC_Playground.Controllers
                 empViewModels.Add(empViewModel);
             }
             employeeListViewModel.Employees = empViewModels;
-            employeeListViewModel.UserName = "Admin";
-            return View("View", employeeListViewModel);
+            
+            return View(employeeListViewModel);
+        }
+
+        public ActionResult AddNew()
+        {
+            return View("CreateEmployee");
+        }
+
+        public ActionResult SaveEmployee(Employee e, string BtnSubmit)
+        {
+            switch (BtnSubmit)
+            {
+                case "Save Employee":
+                    if (ModelState.IsValid)
+                    {
+                        EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+                        empBal.SaveEmployee(e);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("CreateEmployee", e);
+                    }
+                case "Cancel":
+                    return RedirectToAction("Index");
+            }
+            return new EmptyResult();
         }
     }
+
 }

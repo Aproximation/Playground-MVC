@@ -15,6 +15,14 @@ namespace MVC_Playground.DataAccessLayer
             return salesDal.Employees.ToList();
         }
 
+        public Employee SaveEmployee(Employee e)
+        {
+            UsersDAL salesDal = new UsersDAL();
+            salesDal.Employees.Add(e);
+            salesDal.SaveChanges();
+            return e;
+        }
+
         public List<Employee> GetEmployeesOld()
         {
             List < Employee > employees = new List<Employee> ();

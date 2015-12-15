@@ -13,6 +13,8 @@ namespace MVC_Playground.DataAccessLayer
     {
         public DbSet<Employee> Employees { get; set; }
 
+        //public UsersDAL():base("mvc"){};
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>().ToTable("TblEmployee");
