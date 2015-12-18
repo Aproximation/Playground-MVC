@@ -2,7 +2,8 @@
 @model EmployeeListViewModel
 
 <body>
-    Hello Sir
+    <div style="text-align:right"> Hello, @Model.UserName 
+    <a href="/Authentication/Logout">Logout</a></div>
     <hr />
     <a href="/playground/mvc/Employee/AddNew">Add New</a>
         <div>

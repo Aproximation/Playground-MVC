@@ -38,15 +38,16 @@ namespace MVC_Playground.Controllers
                 empViewModels.Add(empViewModel);
             }
             employeeListViewModel.Employees = empViewModels;
-            
+            employeeListViewModel.UserName = User.Identity.Name;
+
             return View(employeeListViewModel);
         }
 
         public ActionResult AddNew()
         {
-            return View("CreateEmployee");
+            return View("CreateEmployee", new Employee());
         }
-
+        
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)

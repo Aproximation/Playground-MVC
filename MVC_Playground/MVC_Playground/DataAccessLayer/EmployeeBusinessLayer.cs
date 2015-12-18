@@ -23,6 +23,18 @@ namespace MVC_Playground.DataAccessLayer
             return e;
         }
 
+        public bool IsValidUser(UserDetails u)
+        {
+            if (u.UserName == "Admin" && u.Password == "Admin")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public List<Employee> GetEmployeesOld()
         {
             List < Employee > employees = new List<Employee> ();
