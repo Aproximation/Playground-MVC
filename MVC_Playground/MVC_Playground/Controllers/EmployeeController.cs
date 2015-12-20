@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using MVC_Playground.Models;
 using MVC_Playground.DataAccessLayer;
 using MVC_Playground.ViewModels;
+using MVC_Playground.Logic.Filters;
 
 namespace MVC_Playground.Controllers
 {
+    [HeaderFooterFilter]
     public class EmployeeController : Controller
     {
         // GET: Test
@@ -38,16 +40,30 @@ namespace MVC_Playground.Controllers
                 empViewModels.Add(empViewModel);
             }
             employeeListViewModel.Employees = empViewModels;
-            employeeListViewModel.UserName = User.Identity.Name;
 
             return View(employeeListViewModel);
         }
 
+        [AdminFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new Employee());
+            return View("CreateEmployee", new CreateEmployeeViewModel());
         }
-        
+
+        [ChildActionOnly]
+        public ActionResult GetAddNewLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddNewLink");
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
+        [AdminFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -61,7 +77,7 @@ namespace MVC_Playground.Controllers
                     }
                     else
                     {
-                        return View("CreateEmployee", e);
+                        return View("CreateEmployee", new CreateEmployeeViewModel(e));
                     }
                 case "Cancel":
                     return RedirectToAction("Index");

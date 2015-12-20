@@ -23,15 +23,19 @@ namespace MVC_Playground.DataAccessLayer
             return e;
         }
 
-        public bool IsValidUser(UserDetails u)
+        public UserStatus GetUserValidity(UserDetails u)
         {
             if (u.UserName == "Admin" && u.Password == "Admin")
             {
-                return true;
+                return UserStatus.AuthenticatedAdmin;
+            }
+            else if (u.UserName == "User" && u.Password == "User")
+            {
+                return UserStatus.AuthentucatedUser;
             }
             else
             {
-                return false;
+                return UserStatus.NonAuthenticatedUser;
             }
         }
 

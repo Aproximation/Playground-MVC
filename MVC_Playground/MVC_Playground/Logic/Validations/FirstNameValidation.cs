@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVC_Playground.Validations
+namespace MVC_Playground.Logic.Validations
 {
     public class FirstNameValidation : ValidationAttribute
     {

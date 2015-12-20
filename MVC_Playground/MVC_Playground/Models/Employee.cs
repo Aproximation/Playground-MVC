@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using MVC_Playground.Validations;
+using MVC_Playground.Logic.Validations;
 
 namespace MVC_Playground.Models
 {

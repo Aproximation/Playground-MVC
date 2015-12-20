@@ -1,0 +1,19 @@
+﻿@model MVC_Playground.ViewModels.FileUploadViewModel
+@{
+    ViewBag.Title = "Csv Employee";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@section TitleSection{
+    Bulk Upload
+}
+@section ContentBody{
+    <div>
+        <a href="/playground/mvc/Employee/Index">Back</a>
+        <form action="/playground/mvc/BulkUpload/Upload" method="post" enctype="multipart/form-data">
+            Select File : <input type="file" name="fileUpload" value="" />
+            <input type="submit" name="name" value="Upload" />
+        </form>
+    </div>
+}
+
