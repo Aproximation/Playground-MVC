@@ -39,6 +39,13 @@ namespace MVC_Playground.DataAccessLayer
             }
         }
 
+        public void UploadEmployees(List<Employee> employees)
+        {
+            UsersDAL salesDal = new UsersDAL();
+            salesDal.Employees.AddRange(employees);
+            salesDal.SaveChanges();
+        }
+
         public List<Employee> GetEmployeesOld()
         {
             List < Employee > employees = new List<Employee> ();
