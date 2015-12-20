@@ -1,5 +1,25 @@
-﻿
+﻿<link href="~/content/themes/base/all.css" rel="stylesheet" />
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/jquery-ui-1.11.4.js"></script>
+<script>
+    function OpenAddNew() {
+        $.get("/playground/mvc/Employee/AddNew").then
+            (
+                function (r) {
+                    $("<div id='DivCreateEmployee'></div>").html(r).
+                        dialog({
+                            width: 'auto', height: 'auto', modal: true, title: "Create New Employee",
+                            close: function () {
+                                $('#DivCreateEmployee').remove();
+                            }
+                        });
+                }
+            );
+    }
+</script>
+
 @Html.ActionLink("Add New", "AddNew")
+<a href="#" onclick="OpenAddNew();">Add New in PopUp</a>
 &nbsp;
 &nbsp;
 @Html.ActionLink("BulkUpload", "BulkUpload")
